@@ -15,17 +15,17 @@ services:
       - '--web.console.templates=/usr/share/prometheus/consoles'
     ports:
       - 9090:9090
-    links:
-      - alertmanager:alertmanager
     restart: always
 
-  alertmanager:
-    image: prom/alertmanager
+  grafana:
+    image: grafana/grafana
+    user: "104"
+    depends_on:
+      - prometheus
     ports:
-      - 9093:9093
+      - 3000:3000
     volumes:
-      - ./alertmanager/:/etc/alertmanager/
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
     restart: always
-    command:
-      - '--config.file=/etc/alertmanager/config.yml'
-      - '--storage.path=/alertmanager'

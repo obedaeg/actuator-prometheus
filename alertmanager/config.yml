@@ -10,6 +10,6 @@ route:
 
 receivers:
   - name: slack_general
-    slack_configs:
-      - api_url: 'https://hooks.slack.com/services/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'
-        channel: '#dataops-notifications'
+    #slack_configs:
+    #  - api_url: 'https://hooks.slack.com/services/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'
+    #    channel: '#dataops-notifications'
